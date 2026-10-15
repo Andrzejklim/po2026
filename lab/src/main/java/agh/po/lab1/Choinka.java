@@ -1,8 +1,8 @@
 public class Choinka {
     public static void main(String[] args) {
 
-      int wysokosc = Integer.parseInt(args[0]);
-//        int wysokosc = 5;
+//      int wysokosc = Integer.parseInt(args[0]);
+        int wysokosc = 5;
 
         for(int x = 0; x < 2; x++){
 
