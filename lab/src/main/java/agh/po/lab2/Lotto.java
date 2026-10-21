@@ -5,57 +5,86 @@ import java.util.Collections;
 
 public class Lotto {
 
+    public static void setRandomUniqueArray(ArrayList<Integer> numbers, int size) {
+        boolean flag = true;
+        Random random = new Random();
+        int differentRandomCounter = 0;
+
+        if(numbers.size() == 0){
+            while(flag) {
+                int myRandom = random.nextInt(1, 50);
+
+                if (!numbers.contains(myRandom)) {
+                    numbers.add(myRandom);
+                    differentRandomCounter += 1;
+                }
+                if (differentRandomCounter == size) {
+                    flag = false;
+                }
+            }
+        }
+    }
+
+    public static void setArgsNumArray(ArrayList<Integer> numbers, int size, String[] args) {
+        for(int i = 0; i < size; i++){
+            int actual = Integer.parseInt(args[i]);
+            numbers.add(actual);
+        }
+    }
+
+    public static void singleDraw(ArrayList<Integer> randomArray, ArrayList<Integer> guessedArray ,int size){
+        setRandomUniqueArray(randomArray, size);
+        Collections.sort(randomArray);
+        int counter = 0;
+
+        for (int i = 0; i < size; i++) {
+            if (guessedArray.contains(randomArray.get(i))) {
+                counter += 1;
+            }
+        }
+        System.out.println("Twoje typy: " + guessedArray);
+        System.out.println("Wylosowane liczby: " + randomArray);
+        System.out.println("Liczba trafień: " + counter);
+    }
+
+    public static void mainDrawing(ArrayList<Integer> randomArray, ArrayList<Integer> guessedArray ,int size) {
+        int counter = 0;
+        boolean notGuessed = true;
+
+        long startTime = System.currentTimeMillis();
+
+        while(notGuessed) {
+            randomArray.clear();
+            setRandomUniqueArray(randomArray, size);
+            Collections.sort(randomArray);
+            if(randomArray.equals(guessedArray)){
+                notGuessed = false;
+                System.out.println("Congratulations! Machine guessed all the numbers in the array.");
+                System.out.println("it took " + counter + " guesses." );
+
+                long endTime = System.currentTimeMillis();
+                long totalTimeMs = endTime - startTime;
+
+                System.out.println("Czas wykonania: " + totalTimeMs + " ms");
+                System.out.println("Czas w sekundach: " + (totalTimeMs / 1000.0) + " s");
+            }
+            else{
+                randomArray.clear();
+                counter += 1;
+            }
+        }
+    }
 
     public static void main(String[] args){
-        Random random = new Random();
-        int dlugoscListy = 6;
+
+        int listLength = 6;
         ArrayList<Integer> randomArray = new ArrayList<>();
         ArrayList<Integer> guessedArray = new ArrayList<>();
-        int counter = 0;
-        int differentRandomCounter = 0;
-        boolean notGuessed = true;
-        boolean flag = true;
 
-        while(flag) {
-            int myRandom = random.nextInt(1, 50);
-
-            if (!randomArray.contains(myRandom)) {
-                randomArray.add(myRandom);
-                differentRandomCounter += 1;
-            }
-            if (differentRandomCounter == dlugoscListy) {
-                flag = false;
-            }
-        }
-
-        for(int i = 0; i < dlugoscListy; i++){
-            int actual = Integer.parseInt(args[i]);
-            guessedArray.add(actual);
-        }
-
-
+        setArgsNumArray(guessedArray, listLength, args);
         Collections.sort(guessedArray);
-        Collections.sort(randomArray);
 
-
-        System.out.println(guessedArray);
-        System.out.println(randomArray);
-
-//        boolean AllMatched = true;
-//        while(notGuessed){
-//            for(int i = 0; i < 6; i++) {
-//                if (guessedArray.get(i) != randomArray.get(i)) {
-//                    counter +=1;
-//                    AllMatched = false;
-//                    break;
-//                }
-//            }
-
-
-
-
-
-//        System.out.println("Twoja tabela" + " " + listaZgadnieta);
-//        System.out.println("Liczba trafien: " + counter);
+        singleDraw(randomArray, guessedArray, listLength);
+        mainDrawing(randomArray, guessedArray, listLength);
     }
 }
