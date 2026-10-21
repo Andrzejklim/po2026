@@ -5,9 +5,10 @@ import java.util.Collections;
 
 public class Lotto {
 
+    private static final Random random = new Random();
+
     public static void setRandomUniqueArray(ArrayList<Integer> numbers, int size) {
         boolean flag = true;
-        Random random = new Random();
         int differentRandomCounter = 0;
 
         if(numbers.size() == 0){
@@ -33,6 +34,7 @@ public class Lotto {
     }
 
     public static void singleDraw(ArrayList<Integer> randomArray, ArrayList<Integer> guessedArray ,int size){
+        Random random = new Random();
         setRandomUniqueArray(randomArray, size);
         Collections.sort(randomArray);
         int counter = 0;
@@ -76,6 +78,7 @@ public class Lotto {
     }
 
     public static void main(String[] args){
+
 
         int listLength = 6;
         ArrayList<Integer> randomArray = new ArrayList<>();
