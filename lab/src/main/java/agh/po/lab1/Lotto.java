@@ -1,32 +1,38 @@
 import java.util.Random;
 import java.util.ArrayList;
 
-class Losowa {
 
-    public int liczba;
-    public Losowa(int l){
-        this.liczba = l;
+public class Lotto {
+
+    private static final Random random = new Random();
+
+    public static void setRandomUniqueArray(ArrayList<Integer> numbers, int size) {
+        boolean flag = true;
+        int differentRandomCounter = 0;
+
+        if(numbers.size() == 0){
+            while(flag) {
+                int myRandom = random.nextInt(1, 50);
+
+                if (!numbers.contains(myRandom)) {
+                    numbers.add(myRandom);
+                    differentRandomCounter += 1;
+                }
+                if (differentRandomCounter == size) {
+                    flag = false;
+                }
+            }
+        }
     }
 
 
-}
-
-
-public class Lotto {
     public static void main(String[] args){
         System.out.println("Lotto");
-        Random random = new Random();
 
-        ArrayList<Losowa> lista = new ArrayList<Losowa>();
+        ArrayList<Integer> lista = new ArrayList<Integer>();
 
-        for(int i = 0; i < 10; i++){
-            int wylosowana = random.nextInt(49) + 1;
-            lista.add(new Losowa(wylosowana));
-        }
+        setRandomUniqueArray(lista, 6);
 
-        for(Losowa element: lista){
-            System.out.println(element.liczba);
-        }
-
+        System.out.println(lista);
     }
 }
