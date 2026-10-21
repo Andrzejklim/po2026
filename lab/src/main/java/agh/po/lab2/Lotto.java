@@ -34,7 +34,6 @@ public class Lotto {
     }
 
     public static void singleDraw(ArrayList<Integer> randomArray, ArrayList<Integer> guessedArray ,int size){
-        Random random = new Random();
         setRandomUniqueArray(randomArray, size);
         Collections.sort(randomArray);
         int counter = 0;
@@ -54,9 +53,9 @@ public class Lotto {
         boolean notGuessed = true;
 
         long startTime = System.currentTimeMillis();
+        randomArray.clear();
 
         while(notGuessed) {
-            randomArray.clear();
             setRandomUniqueArray(randomArray, size);
             Collections.sort(randomArray);
             if(randomArray.equals(guessedArray)){
