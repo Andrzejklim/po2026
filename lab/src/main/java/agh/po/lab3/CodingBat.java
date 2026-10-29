@@ -58,6 +58,7 @@ public class CodingBat {
         System.out.println(obiekt1.sleepIn(false, true));
         System.out.println(obiekt1.icyHot(-1, 90));
         System.out.println(obiekt1.lastTwo("cat"));
+        System.out.println("Hello");
     }
 
 
