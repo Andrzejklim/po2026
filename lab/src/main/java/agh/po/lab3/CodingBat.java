@@ -1,6 +1,8 @@
 package agh.po.lab3;
 
 import java.time.chrono.MinguoDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CodingBat {
 
@@ -61,5 +63,36 @@ public class CodingBat {
         System.out.println(obiekt1.haveThree(new int[]{1,3,2}));
     }
 
+    // mapAB4
+    public Map<String, String> mapAB4(Map<String, String> map) {
 
+
+        if (map.containsKey("a") && map.containsKey("b")) {
+            int lengthA = map.get("a").length();
+            int lengthB = map.get("b").length();
+
+            if(lengthA > lengthB){
+                map.put("c", map.get("a"));
+            } else if (lengthB > lengthA) {
+                map.put("c", map.get("b"));
+            } else{
+                map.put("a", "");
+                map.put("b", "");
+            }
+        }
+        return map;
+    }
+
+    // pairs
+    public Map<String, String> pairs(String[] strings) {
+        Map<String, String> myMap = new HashMap<>();
+
+        for(int i = 0; i < strings.length; i++){
+            if (strings[i].length() > 0) {
+                myMap.put(String.valueOf(strings[i].charAt(0)) , String.valueOf(strings[i].charAt(strings[i].length()-1)));
+            }
+
+        }
+        return myMap;
+    }
 }
