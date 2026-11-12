@@ -1,4 +1,4 @@
-package agh.po.lab4.animals;
+package agh.po.animals;
 
 public class Dog extends Animal {
     @Override

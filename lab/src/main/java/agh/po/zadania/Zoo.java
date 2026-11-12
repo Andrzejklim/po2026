@@ -1,4 +1,4 @@
-package agh.po;
+package agh.po.zadania;
 
 import agh.po.animals.Animal;
 import agh.po.animals.Dog;
