@@ -35,7 +35,7 @@ public class Car{
         Clutch clutchFerrari = new Clutch();
         Engine engineFerrari = new Engine(7000);
         GearBox gearBoxFerrari = new GearBox(0,clutchFerrari);
-        Position positionFerrari = new Position(25,25);
+        Position positionFerrari = new Position(0,0);
 
         //utworzenie obiektu
         Car myCar = new Car(engineFerrari, gearBoxFerrari, positionFerrari);
@@ -52,6 +52,7 @@ public class Car{
         clutchFerrari.release();
         myCar.turnOff();
 
+        myCar.carPosition.moveBy(0.1, 20, new double []{5,6});
     }
 
 }
